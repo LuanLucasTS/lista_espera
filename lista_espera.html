@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Espera</title>
+    <link rel="shortcut icon" href="/static/imagens/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v6.5.1/css/all.css'>
+</head>
+<body class="bg-secondary">
+<div class="container">
+     <br>
+   <div class="shadow p-3 mb-2 bg-success h2 rounded text-white text-center "><i class="fa-solid fa-list"></i> Lista de espera para compra de computador usado</div>
+
+    <p class="bg-light p-3 mb-2 rounded"><button type="button" class="btn btn-danger float-end" data-bs-toggle="modal" data-bs-target="#meuTermoModal">Ver Termos de Aceite</button>
+        ATENÇÃO! Ao adicionar seu nome na lista de espera, você automaticamente concorda com os termos de compra de equipamentos de informática usados.
+        <br>A ordem de prioridade é de cima para baixo, ou seja, os nomes mais acima serão os próximos a serem informados sobre equipamentos disponíveis.
+    </p>
+
+<form action="{{ url_for('nova_lista_espera') }}" method="post" enctype="multipart/form-data" class="bg-dark container-fluid rounded mb-2">
+    <fieldset>
+       <div class="row">
+           <div class="col-sm">
+               <div class="form-group">
+                <label class="p-2 mb-2 bg-dark h5 rounded text-white" for="nome">Nome e sobrenome</label>
+                <input type="text" id="nome" name="nome" class="form-control col-sm-6 col-form-label" required autocomplete="off">
+               </div>
+               <button type="submit" class="btn btn-primary m-2 mb-3"><i class="fas fa-plus-square "></i> Adicionar</button>
+           </div>
+
+           <div class="col-sm">
+               <label class="p-2 mb-2 bg-dark h5 rounded text-white" for="empresa">Empresa</label><br>
+                  <select class="form-control col-sm-4 mb-3" id="empresa" name="empresa">
+                        <option value="ADM">ADM</option>
+                        <option value="FISA">FISA</option>
+                  </select>
+           </div>
+       </div>
+    </fieldset>
+</form>
+
+<table class="table table-striped table-sm table-hover table-dark table-bordered">
+  <thead>
+    <tr class="table-dark">
+      <th>Nome</th>
+      <th>Empresa</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for lista in lista %}
+    <tr>
+      <td>{{ lista[0] }}</td>
+      <td>{{ lista[1] }}</td>
+    </tr>
+    {%endfor%}
+  </tbody>
+</table>
+</div>
+
+
+
+    <div class="modal fade" id="meuTermoModal" tabindex="-1" aria-labelledby="meuTermoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable"> <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="meuTermoModalLabel">Documento de Termos e Condições</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="card shadow p-4 mb-3">
+                        <p class="lead text-center">TERMO DE ACEITE E CIÊNCIA PARA COMPRA DE EQUIPAMENTOS DE INFORMÁTICA USADOS</p>
+
+                        <p>Pelo presente instrumento, a Empresa FINANCIAL IMOBILIÁRIA, doravante denominada VENDEDORA, e o indivíduo que preencher a lista de interesse ou formalizar a compra, doravante denominado COMPRADOR, têm como justo e acordado o seguinte:</p>
+
+                        <h6>1. Objeto do Termo</h6>
+                        <p>O presente Termo estabelece as condições de compra e aceite de equipamentos de informática (computadores, notebooks, etc.) que são classificados como USADOS e pertencentes ao ativo imobilizado da VENDEDORA.</p>
+
+                        <h6>2. Condição dos Equipamentos</h6>
+                        <p>2.1. O COMPRADOR declara ter ciência inequívoca de que os equipamentos são USADOS, sendo vendidos no estado em que se encontram.
+                            <br>
+                        2.2. Os equipamentos podem apresentar defeitos, falhas, desgaste natural, avarias estéticas ou qualquer outra irregularidade inerente ao uso anterior.
+                        </p>
+
+                        <h6>3. Ausência de Garantia e Suporte</h6>
+                        <p>3.1. Sem Garantia de Qualquer Natureza: A VENDEDORA NÃO OFERECE, EM HIPÓTESE ALGUMA, QUALQUER TIPO DE GARANTIA sobre os equipamentos, seja garantia legal, contratual, de funcionamento, de durabilidade ou de qualquer outra espécie.
+                            <br>
+                        3.2. Isenção de Responsabilidade: O COMPRADOR assume integralmente o risco de funcionamento e manutenção do equipamento.
+                            <br>
+                        3.3. Sem Suporte Técnico (Hardware e Software): A VENDEDORA NÃO PRESTARÁ nenhum tipo de suporte técnico, assistência ou reparo para o equipamento, seja em relação ao hardware (componentes físicos) ou ao software (sistemas operacionais, programas, aplicativos, drivers, etc.).
+                            <br>
+                        3.4. Irrevogabilidade e Ausência de Devolução/Troca: A compra dos equipamentos é considerada IRREVOGÁVEL E IRRETRATÁVEL. Uma vez formalizada e concluída a transação e retirada do bem, o COMPRADOR NÃO TERÁ DIREITO À DEVOLUÇÃO, TROCA OU REEMBOLSO do valor pago, sob qualquer pretexto, incluindo, mas não se limitando a, problemas de funcionamento ou insatisfação com o estado do bem.
+                        </p>
+
+                        <h6>4. Periféricos e Acessórios</h6>
+                        <p>4.1. Inexistência de Periféricos Garantidos: A VENDEDORA NÃO GARANTE o envio de periféricos ou acessórios adicionais com o computador (tais como teclado, mouse, cabos de vídeo, webcam, fone de ouvido, manuais, caixas originais, etc.). A eventual inclusão de qualquer periférico ou acessório será considerada mera liberalidade da VENDEDORA no momento da entrega.
+                            <br>
+                        4.2. Caso algum periférico ou acessório seja incluído, este também estará sujeito às mesmas condições de venda e ausência de garantia estabelecidas neste Termo.
+                        </p>
+
+                        <h6>5. Disponibilidade e Liberação para Compra</h6>
+                        <p>5.1. Sem Previsão de Liberação: A VENDEDORA NÃO ESTABELECE QUALQUER PRAZO OU PREVISÃO para a liberação de lotes de computadores para compra. A disponibilização dos equipamentos ocorrerá conforme a necessidade interna da VENDEDORA e a seu exclusivo critério.
+                            <br>
+                        5.2. A manifestação de interesse na compra (como a inclusão em listas de espera) NÃO GERA DIREITO ADQUIRIDO ou expectativa de direito de compra por parte do COMPRADOR, tampouco obriga a VENDEDORA a realizar a venda.
+                        </p>
+
+                        <h6>6. Alteração dos Termos</h6>
+                        <p>6.1. A VENDEDORA reserva-se o direito de MODIFICAR, ALTERAR OU REVOGAR este Termo, as regras de venda, os preços e as condições de qualquer natureza a QUALQUER MOMENTO, SEM NECESSIDADE DE AVISO PRÉVIO ou consentimento do COMPRADOR.
+                            <br>
+                        6.2. As condições vigentes e aceitas serão aquelas no momento da formalização da compra.
+                        </p>
+
+                        <h6>7. Aceite e Concordância</h6>
+                        <p>7.1. A simples inclusão do nome do indivíduo na lista de interesse, seja ela física ou digital, e/ou a formalização da intenção de compra do equipamento, implica na TÁCITA E INTEGRAL CONCORDÂNCIA do COMPRADOR com todos os termos e condições estabelecidos neste documento.
+                            <br>
+                        7.2. O COMPRADOR declara ter lido, compreendido e aceito todas as cláusulas, renunciando a qualquer reclamação futura que contrarie o disposto neste Termo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+              <footer class="py-3 my-4">
+                <p class="text-center text-white">&copy; 2023-2025 Financial Imobiliária - Tecnologia da Informação - <a href="https://linktr.ee/luan_lucas" class="text-white" target="_blank">Luan Lucas</a></p>
+              </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>
