@@ -6,7 +6,8 @@ Uma aplicação genérica de **lista de espera**, desenvolvida para ser facilmen
 
 - Cadastro e gerenciamento de pessoas na lista de espera  
 - Atualização em tempo real (dependendo da configuração)  
-- Interface simples e intuitiva  
+- Interface simples e intuitiva
+- API REST para integração com outros sistemas  
 - Sistema genérico e personalizável  
 
 ## 🛠️ Tecnologias
